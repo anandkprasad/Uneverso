@@ -1,0 +1,196 @@
+<%- include('partials/favi') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/checkout.css">
+    <title>Uneverso - Your Easy Buy</title>
+</head>
+<body>
+    <div class="navbar container">
+        <div class="logo">
+            <img src="/images/logo.png" alt="" class="logo">
+        </div>
+        <nav class="margin-nav">
+            <ul id="menuitems">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <% if(!currentUser){ %>
+                    <li>
+                        <a href="/login">Account</a>
+                    </li>
+                <% } else { %>
+                    <li ><a href="/dashboard">
+                        Signed in as <%= currentUser.username %></a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/cart"><img src="/images/cart.png" width="30px" height="30px" class="cart-nav"></a></li>
+                <% } %>
+            </ul>
+        </nav>
+        <img src="/images/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+<% var safeString = product.price.replace('₹', ''); %> 
+<% var safeString1 = safeString.replace(',', ''); %>
+<% var sum = parseFloat(safeString1) %>
+
+    <h1 class="center">Checkout</h1>
+
+    <div class="row">
+        <div class="col-2 check-cart">
+            <!-- cart-itmes -->
+
+            <div class="small-container">
+                <table>
+                    <tr>
+                        <th>Product</th>
+                        <th>Subtotal</th>
+                    </tr>
+                    <% var currentProduct = product._id %>
+                <div class="cart-main container">
+                            <tr>
+                                <td>    
+                                    <div class="cart-info">
+                                        <img src="<%= product.image %>" class="img-cart">
+                                        <div>
+                                            <p><%= product.title.substring(0, 20) %></p>
+                                            <small>₹<%= sum %></small>
+                                        </div>
+                                    </div>
+                                </td>
+                                
+                                <td>₹<%= sum %></td>
+                            </tr>
+            </table>
+
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td>₹<%= sum %></td>
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <td>₹0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>₹<%= sum %></td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+
+            <% var amount = sum * 100; %>
+
+        </div>
+        <div class="col-2">
+            <div class="container center">
+                <h2 class="head-pay">Pay now via RazerPay:</h2>
+                <form action="/success/<%= currentProduct %>" method="POST">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="label-form" class="label">Name</label>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control" id="label-form" placeholder="e.g. Jeff Bezos" name="name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="label-form" class="label">Email</label>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control" id="label-form" placeholder="e.g. jeff.bezos@gmail.com" name="email" value="<%= currentUser.email %>" required>
+                            </div>
+                        </div>                   
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="label-form" class="label">Phone</label>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control" id="label-form" placeholder="e.g. 97XXXXXXXX" name="phone" required>
+                            </div>
+                        </div>                  
+                    </div>
+                    <div class="form-group"> 
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="label-form" class="label">UIC (if applicable)</label>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control" id="label-form" placeholder="UIC" name="uic">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                        <input type="submit" value="Submit">
+                </form>
+                <a href="/" class="btn">Go back</a>
+              </div>
+        </div>
+    </div>
+
+
+<!-- footer -->
+    
+<div class="footer">
+    <hr>
+    <div class="row">
+        <div class="col-4">
+            <h3>Uneverso Stores</h3>
+            <br>
+            <p class="footer-about">Uneverso Stores is the one destination for getting amazing cashbacks and discounts. This company believes in the benefit of the customer while keeping itself the zone for opportunities. So, if you wanna make money and have fun doing it. We would be honoured to have you join our team.</p>
+            <br>
+            <p class="footer-about">☏ +91 9182935177</p>
+            <p class="footer-about">✉ teamofficial@uneversostores.com</p>
+        </div>
+        <div class="col-4">
+            <h4 class="footer-about">Quick Links</h4>
+            <br>
+            <ul>
+                <li><a href="/" class="footer-about">Home</a></li>
+                <li><a href="/about" class="footer-about">About</a></li>
+                <li><a href="/contact" class="footer-about">Contact</a></li>
+                <li><a href="/login" class="footer-about">Account</a></li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <h4 class="footer-about">Social Links</h4>
+            <br>
+            <ul>
+                <li><a href="https://www.instagram.com/ig_uneverso/" class="footer-about">Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class="footer-text">&copy; Uneverso Stores. All rights reserved 2020. Developed and Designed by @anandkishorprasad.</p>
+</div>
+    
+    
+    <script>
+        // js for toggle
+    
+        var menuitems = document.getElementById("menuitems");
+        
+        menuitems.style.maxHeight = "300px";
+    
+        function menutoggle(){
+            if(menuitems.style.maxHeight == "300px"){
+                menuitems.style.maxHeight = "0px";
+            } else {
+                menuitems.style.maxHeight = "300px";
+            }
+        }
+    </script>
+</body>
+</html>

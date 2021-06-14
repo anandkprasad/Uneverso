@@ -1,0 +1,54 @@
+<%- include('partials/links') %>
+<%- include('partials/favi') %>
+<%- include('partials/nav') %>
+
+
+<style>
+    body{
+        background: none;
+    }
+</style>
+
+<div class="res-admin center">
+    <h2 class="head-res">Orders</h2>
+    <table class="center">
+      <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact No</th>
+          <th>UIC</th>
+          <th>Product Name</th>
+          <th>Product Id</th>
+      </tr>
+  
+      <% for(var i = 0; i< order.length; i++) { %>
+        <tr>
+          <td><%= order[i].name %></td>
+          <td><%= order[i].email %></td>
+          <td><%= order[i].phone %></td>
+          <td><%= order[i].uic %></td>
+          <td><%= order[i].product %></td>
+          <td><%= order[i].productid %></td>
+        </tr>
+      <% } %>
+      
+    </table>
+    <a href="/admin">Go back</a>
+  </div>
+
+  <script>
+    // js for toggle
+
+    var menuitems = document.getElementById("menuitems");
+    
+    menuitems.style.maxHeight = "300px";
+
+    function menutoggle(){
+        if(menuitems.style.maxHeight == "300px"){
+            menuitems.style.maxHeight = "0px";
+        } else {
+            menuitems.style.maxHeight = "300px";
+        }
+    }
+</script>
+

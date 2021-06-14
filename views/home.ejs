@@ -1,0 +1,246 @@
+<%- include('partials/favi') %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Uneverso - Your Easy Buy</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/home.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">     
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="" class="logo">
+                    </div>
+                    <nav class="margin-nav">
+                        <ul id="menuitems">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#products">Products</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <% if(!currentUser){ %>
+                              <li>
+                                  <a href="/login">Account</a>
+                              </li>
+                            <% } else { %>
+                              <li ><a href="/dashboard">
+                                  Signed in as <%= currentUser.username %></a></li>
+                              <li><a href="/logout">Logout</a></li>
+                            <% } %>
+                        </ul>
+                        <% if(currentUser){ %>
+                          <a href="/cart"><img src="/images/cart.png" width="30px" height="30px" class="cart-nav"></a>
+                        <% } %>
+                    </nav>
+                    <img src="images/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+                </div>
+                <div class="search">
+                    <form class="example" action="/search" method="POST">
+                        <input type="text" placeholder="Search.." name="input">
+                        <button type="submit"><img src="images/search.png" alt=""></button>
+                    </form>
+                </div>
+
+                <div class="row">
+                    <div class="col-2">
+                        <h1 class="glitch" data-text="Feel the new Meaning of Shopping!">Feel the new<br>Meaning of Shopping!</h1>
+                        <p class="para-top">Whoever said that money can't buy happiness simply didn't know where to go shopping.</p>
+                        <a href="#products" class="btn">Explore Now &#8594;</a>
+                    </div>
+                    <div class="col-2">
+                        <img src="images/store.png" alt="">
+                    </div>
+                </div>
+            </div>   
+    </div>
+    <!-- network section -->
+    
+    <div class="categories container">
+      <h2 class="title">Learn and Grow</h2>
+      <br>
+        <div class="small-container">
+            <div class="row">
+              <% for(var i = 0; i< product.length; i++) { %>
+                <% if(i > 3){ %>
+                  <% break; %>
+                <% } %>
+                  <% if(product[i].strategy == "network") { %>
+                    <div class="col-3 products">
+                        <img src="<%= product[i].image %>" alt="" class="image-cat center">
+                        <h4 class="product-title center"><%= product[i].title %></h4>
+                        <% if(product[i].price.search("₹") != -1){ %>
+                          <p class="center"><%= product[i].price %></p>
+                        <% } else { %>
+                          <p class="center">₹<%= product[i].price %></p>
+                        <% } %>
+                        <div class="product-btn center">
+                          <a class="btn btn-primary" href="/showproduct/<%= product[i]._id %>">Know more</a>
+                          <% if(product[i].strategy == "network") { %>
+                            <a href="/buynow/<%= product[i]._id %>" class="btn btn-danger">Buy Now</a>
+                          <% } else { %>
+                            <a href="/product/affiliate/<%= product[i]._id %>" class="btn btn-danger">Go to Amazon</a>
+                          <% } %>
+                        </div>
+                    </div>
+                  <% } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    
+    <hr>
+    
+    <!-- featured section -->
+    <h2 class="title">Featured Products</h2>
+    <div class="small-container products-slide" id="products" >
+        <div class="row">
+          <% for(var i = 0; i< product.length; i++) { %>
+            <% if(i > 3){ %>
+              <% break; %>
+            <% } %>
+              <% if(product[i].featured == true) { %>
+                <div class="col-md-4 products">
+                    <img src="<%= product[i].image %>" alt="" class="image-cat center">
+                    <h4 class="product-title center"><%= product[i].title %></h4>
+                    <% if(product[i].price.search("₹") != -1){ %>
+                      <p class="center"><%= product[i].price %></p>
+                    <% } else { %>
+                      <p class="center">₹<%= product[i].price %></p>
+                    <% } %>
+                    <div class="product-btn center">
+                      <a class="btn btn-primary" href="/showproduct/<%= product[i]._id %>">Know more</a>
+                      <% if(product[i].strategy == "network") { %>
+                        <a href="/buynow/<%= product[i]._id %>" class="btn btn-danger">Buy Now</a>
+                      <% } else { %>
+                        <a href="/product/affiliate/<%= product[i]._id %>" class="btn btn-danger">Go to Amazon</a>
+                      <% } %>
+                    </div>
+                </div>
+              <% } %>
+            <% } %>
+        </div>
+    </div>
+    </div>
+
+    <div class="container see-div">
+      <a href="/products" class="btn btn-danger see-more">See more</a>
+      <hr>
+    </div>
+    <!-- testimonials section -->
+
+    <div class="testimonials-main">
+        <h2 class="title">Testimonials</h2>
+        <br>
+        <br>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <div class="wrapper">
+            <div class="box">
+            <i class="fas fa-quote-left quote"></i>
+            <p>This is truly a fantastic resource for those who want to "step into" the mind to buy and earn. On a different note, it is also an interesting modern perspective from somebody who has lived through the generation changes in and several different "kind" in shopping sites.</p>
+            <div class="content">
+                <div class="info">
+                <div class="name">Dr. Manish Sharma</div>
+                <div class="job">Customer</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="box">
+            <i class="fas fa-quote-left quote"></i>
+            <p>I learned several interesting things about how we can earn while doing shopping also I did not know previously this made me reconsider how I use modern equivalents like shop online and earn passive income.</p>
+            <div class="content">
+                <div class="info">
+                <div class="name">Deepika Gowthwal</div>
+                <div class="job">Customer | Member</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="box">
+            <i class="fas fa-quote-left  quote"></i>
+            <p>This site  is very easy to learn with e-books  nicely reproduced so you can get a sense of what books are for. I use uneverso for shopping a lot be it e-books, electronics, cosmetics, mobile or accessories I get every product on this site from a to z</p>
+            <div class="content">
+                <div class="info">
+                <div class="name">Ankit Bhatt</div>
+                <div class="job">Customer</div>
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+   <!-- footer -->
+    
+<div class="footer">
+  <hr>
+  <div class="row">
+      <div class="col-4">
+          <h3>Uneverso Stores</h3>
+          <br>
+          <p class="footer-about">Uneverso Stores is the one destination for getting amazing cashbacks and discounts. This company believes in the benefit of the customer while keeping itself the zone for opportunities. So, if you wanna make money and have fun doing it. We would be honoured to have you join our team.</p>
+          <br>
+          <p class="footer-about">☏ +91 9182935177</p>
+          <p class="footer-about">✉ teamofficial@uneversostores.com</p>
+      </div>
+      <div class="col-4">
+          <h4 class="footer-about">Quick Links</h4>
+          <br>
+          <ul>
+              <li><a href="/" class="footer-about">Home</a></li>
+              <li><a href="/about" class="footer-about">About</a></li>
+              <li><a href="/contact" class="footer-about">Contact</a></li>
+              <li><a href="/login" class="footer-about">Account</a></li>
+          </ul>
+      </div>
+      <div class="col-4">
+          <h4 class="footer-about">Social Links</h4>
+          <br>
+          <ul>
+              <li><a href="https://www.instagram.com/ig_uneverso/" class="footer-about">Instagram</a></li>
+          </ul>
+      </div>
+  </div>
+  <p class="footer-text">&copy; Uneverso Stores. All rights reserved 2020. Developed and Designed by @anandkishorprasad.</p>
+</div>
+
+    <script>
+        // js for toggle
+
+        var menuitems = document.getElementById("menuitems");
+        
+        menuitems.style.maxHeight = "300px";
+
+        function menutoggle(){
+            if(menuitems.style.maxHeight == "300px"){
+                menuitems.style.maxHeight = "0px";
+            } else {
+                menuitems.style.maxHeight = "300px";
+            }
+        }
+    </script>
+    </body>
+</html>

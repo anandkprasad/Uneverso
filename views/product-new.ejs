@@ -1,0 +1,82 @@
+<%- include('partials/links') %>
+<%- include('partials/favi') %>
+<%- include('partials/nav') %>
+
+
+<style>
+    body{
+        background: none;
+    }
+</style>
+
+<div class="container admin-main">
+    <h1>New Product</h1>
+      <form action="/admin/product" method="POST">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Head</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Apple Iphone" name="title">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Body</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Price</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="₹ 100" name="price">
+          </div>
+          <div class="form-group">
+              <label for="exampleFormControlInput1">Link for Image</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="www.unsplash.com/Apple" name="image">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Affiliate Link (if affiliate product)</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="www.unsplash.com/Apple" name="link">
+        </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Featured</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="featured">
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Strategy</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="strategy">
+              <option value="affiliate">Affiliate</option>
+              <option value="network">Network</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Catagory</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="category">
+              <option value="Mobile Phones">Mobile Phones</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Home Needs">Home Needs</option>
+              <option value="Sports Needs">Sports Needs</option>
+              <option value="Health & Beauty">Health & Beauty</option>
+              <option value="Toys and Kids Fashion">Toys and Kids Fashion</option>
+              <option value="Gifts">Gifts</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+  </div>
+  <br>
+
+  <script>
+    // js for toggle
+
+    var menuitems = document.getElementById("menuitems");
+    
+    menuitems.style.maxHeight = "300px";
+
+    function menutoggle(){
+        if(menuitems.style.maxHeight == "300px"){
+            menuitems.style.maxHeight = "0px";
+        } else {
+            menuitems.style.maxHeight = "300px";
+        }
+    }
+</script>

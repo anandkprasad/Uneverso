@@ -1,0 +1,49 @@
+<%- include('partials/favi') %>
+<%- include('partials/links') %>
+<%- include('partials/nav') %>
+
+<div class="container login-main  back-auth">
+    <h1 class="center font display-4">Log in</h1>
+    <img src="https://image.freepik.com/free-vector/follow-me-social-business-theme-design_24877-50426.jpg" alt="" class="user-image">
+    <div class="center">
+        <p class="text-black">Happy to have you back! Please Login.</p>
+        <div class="">   
+            <form action="/login" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Username" name="username">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="Password" name="password">
+            </div>
+            <div class="form-group">
+                <input class="form-control btn-primary" type="submit" value="Login">  
+            </div>
+            </form>
+            <br>
+            <a href="/signup" class="text-black">Not a member yet? Sign up now.</a>
+            <br>
+            <br>
+            <div class="center"><a class="text-black" href="/">Go back</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="footer l-box is-center">
+    &copy; Uneverso Stores. All rights reserved 2020. Developed and Designed by @anandkishorprasad.
+</div>
+
+<script>
+    // js for toggle
+
+    var menuitems = document.getElementById("menuitems");
+    
+    menuitems.style.maxHeight = "300px";
+
+    function menutoggle(){
+        if(menuitems.style.maxHeight == "300px"){
+            menuitems.style.maxHeight = "0px";
+        } else {
+            menuitems.style.maxHeight = "300px";
+        }
+    }
+</script>

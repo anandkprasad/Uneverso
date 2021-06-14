@@ -1,0 +1,49 @@
+<%- include('partials/links') %>
+<%- include('partials/favi') %>
+<%- include('partials/nav') %>
+
+<style>
+    body{
+        background: none;
+    }
+</style>
+
+<div class="res-admin center">
+    <h2 class="head-res">Contact Responses</h2>
+    <table class="center">
+      <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact No</th>
+          <th>Message</th>
+      </tr>
+  
+      <% for(var i = 0; i< contact.length; i++) { %>
+        <tr>
+          <td><%= contact[i].name %></td>
+          <td><%= contact[i].email %></td>
+          <td><%= contact[i].phone %></td>
+          <td><%= contact[i].message %></td>
+        </tr>
+      <% } %>
+      
+    </table>
+    <a href="/admin">Go back</a>
+  </div>
+
+  <script>
+    // js for toggle
+
+    var menuitems = document.getElementById("menuitems");
+    
+    menuitems.style.maxHeight = "300px";
+
+    function menutoggle(){
+        if(menuitems.style.maxHeight == "300px"){
+            menuitems.style.maxHeight = "0px";
+        } else {
+            menuitems.style.maxHeight = "300px";
+        }
+    }
+</script>
+

@@ -1,0 +1,36 @@
+<%- include('partials/links') %>
+<%- include('partials/favi') %>
+<%- include('partials/nav') %>
+
+<div class="success-main container">
+    <p>Do you want to initiate payment?</p>
+    <script src="https://js.instamojo.com/v1/checkout.js"></script>
+    <script>
+      function onButtonClick() {
+        Instamojo.open('https://www.instamojo.com/enterinstamojoid');
+      }
+    </script>   
+    <button onclick="onButtonClick()">
+      Open Instapay
+    </button>
+    <br>
+    <br>
+    <p style="color: red;">Note: Returning on this stage will cancel your current order.</p>
+</div>
+
+
+<script>
+    // js for toggle
+
+    var menuitems = document.getElementById("menuitems");
+    
+    menuitems.style.maxHeight = "300px";
+
+    function menutoggle(){
+        if(menuitems.style.maxHeight == "300px"){
+            menuitems.style.maxHeight = "0px";
+        } else {
+            menuitems.style.maxHeight = "300px";
+        }
+    }
+</script>

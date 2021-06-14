@@ -1,0 +1,114 @@
+ <link rel="stylesheet" href="/css/home.css">
+ 
+ <title>Uneverso - Your Easy Buy</title>
+
+ <style>
+    .cart-nav{
+        margin-top: 17px;
+    }
+ </style>
+ <%- include('partials/favi') %>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="/images/logo.png" alt="" class="logo">
+            </div>
+            <nav class="margin-nav">
+                <ul id="menuitems">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <% if(!currentUser){ %>
+                        <li>
+                            <a href="/login">Account</a>
+                        </li>
+                    <% } else { %>
+                        <li ><a href="/dashboard">
+                            Signed in as <%= currentUser.username %></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        <li><a href="/cart"><img src="/images/cart.png" width="30px" height="30px" class="cart-nav"></a></li>
+                    <% } %>
+                </ul>
+            </nav>
+            <img src="/images/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+        </div>
+        </div>
+
+        <div class="container">
+            <% if(success && success.length>0){ %>
+                <div id="flash" class="alert alert-success" role="alert">
+                    <%= success %>
+                </div>
+            <% } %>
+            <% if(error && error.length>0){ %>
+                <div id="flash" class="alert alert-danger" role="alert">
+                    <div><%= error %></div>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="cata">
+                    <h1>Categories</h1>
+                    <br>
+                    <p><a href="/products/mobile">Mobile Phones</a></p>
+                    <p><a href="/products/electronics">Electronics</a></p>
+                    <p><a href="/products/fashion">Fashion</a></p>
+                    <p><a href="/products/home">Home Needs</a></p>
+                    <p><a href="/products/sports">Sports Needs</a></p>
+                    <p><a href="/products/health">Health & Beauty</a></p>
+                    <p><a href="/products/toys">Toys and Kids Fashion</a></p>
+                    <p><a href="/products/gifts">Gifts</a></p>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <!-- featured section -->
+                <h2 class="title">All Products</h2>
+                <div class="small-container products-slide" id="products" >
+                    <div class="row">
+                    <% for(var i = 0; i< product.length; i++) { %>
+                            <div class="col-md-4 products">
+                                <img src="<%= product[i].image %>" alt="" class="image-cat center">
+                                <h4 class="product-title center"><%= product[i].title %></h4>
+                                <% if(product[i].price.search("₹") != -1){ %>
+                                <p class="center"><%= product[i].price %></p>
+                                <% } else { %>
+                                <p class="center">₹<%= product[i].price %></p>
+                                <% } %>
+                                <div class="product-btn center">
+                                <a class="btn btn-primary" href="/showproduct/<%= product[i]._id %>">Know more</a>
+                                <% if(product[i].strategy == "network") { %>
+                                    <a href="/buynow/<%= product[i]._id %>" class="btn btn-danger">Buy Now</a>
+                                <% } else { %>
+                                    <a href="/product/affiliate/<%= product[i]._id %>" class="btn btn-danger">Go to Amazon</a>
+                                <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+<!-- footer -->
+<div class="footer l-box is-center">
+    &copy; Uneverso Stores. All rights reserved 2020. Developed and Designed by @anandkishorprasad.
+</div>
+
+<script>
+    // js for toggle
+
+    var menuitems = document.getElementById("menuitems");
+    
+    menuitems.style.maxHeight = "300px";
+
+    function menutoggle(){
+        if(menuitems.style.maxHeight == "300px"){
+            menuitems.style.maxHeight = "0px";
+        } else {
+            menuitems.style.maxHeight = "300px";
+        }
+    }
+</script>

@@ -1,0 +1,65 @@
+<%- include('partials/favi') %>
+<%- include('partials/links') %>
+<link rel="stylesheet" href="/css/contact.css">
+<link rel="stylesheet" href="/css/styles.css">
+<%- include('partials/nav') %>
+
+<h1 class="center display-3">Contact Us</h1>
+<div class="container head-contact">
+    <div class="row">
+        <div class="col-md-6 center">
+            <img src="https://images.unsplash.com/photo-1478148054759-b7f4779d7b35?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=890&q=80" alt="" class="image-contact">
+            <p class="para-contact">Uneverso Stores is the one destination for getting amazing cashbacks and discounts. This company believes in the benefit of the customer while keeping itself the zone for opportunities. So, if you wanna make money and have fun doing it. We would be honoured to have you join our team.
+
+
+                <br>☏ +91 9182935177
+                
+                <br>✉ teamofficial@uneversostores.com</p>
+        </div>
+        <div class="col-md-6 center"> 
+            <div class="container admin-main back-auth">
+                <h3>We'll get back to you shortly.</h3>   
+                <form action="/contact" method="POST">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="e.g. Jeff Bezos" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="e.g. uneverso@uneverso.com" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Contact No.</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="981XXXX189" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
+<div class="footer l-box is-center">
+    &copy; Uneverso Stores. All rights reserved 2020. Developed and Designed by @anandkishorprasad.
+</div>
+
+<script>
+    // js for toggle
+
+    var menuitems = document.getElementById("menuitems");
+    
+    menuitems.style.maxHeight = "300px";
+
+    function menutoggle(){
+        if(menuitems.style.maxHeight == "300px"){
+            menuitems.style.maxHeight = "0px";
+        } else {
+            menuitems.style.maxHeight = "300px";
+        }
+    }
+</script>
+

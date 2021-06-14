@@ -1,0 +1,89 @@
+<%- include('partials/links') %>
+<%- include('partials/favi') %>
+<%- include('partials/nav') %>
+
+<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/cart.css">
+
+<style>
+    body{
+        background: none;
+    }
+</style>
+<% var err = true; %>
+
+<h1 class="head-search center">Search results are...</h1>
+
+<% var count = 0; %>
+
+<% for(var i=0; i< product.length; i++){ %>
+    <% if(product[i].title.toLowerCase().search(input.toLowerCase()) != -1 || product[i].category.toLowerCase().search(input.toLowerCase()) != -1){ %> 
+    <div class="container search-top">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+            </tr>
+
+            <div class="search-main container">
+                            <tr>
+                                <td>    
+                                    <div class="cart-info">
+                                        <img src="<%= product[i].image %>" class="img-cart">
+                                        <div>
+                                            <p><%= product[i].title %></p>
+                                            <% if(product[i].price.search("₹") != -1){ %>
+                                                <small><%= product[i].price %></small>
+                                            <% } else { %>
+                                                <small>₹<%= product[i].price %></small>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </td>
+                                <% if(product[i].price.search("₹") != -1){ %>
+                                    <td><%= product[i].price %></td>
+                                <% } else { %>
+                                    <td>₹<%= product[i].price %></td>
+                                <% } %>
+                            </tr>
+            </table>
+            
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td id="check"><a href="/showproduct/<%= product[i]._id %>" id="check-a">Know more</a></td>
+                          <% if(product[i].strategy == "network") { %>
+                            <td id="cart"><a href="/buynow/<%= product[i]._id %>" id="cart-a">Buy Now</a></td>
+                          <% } else { %>
+                            <td id="cart"><a href="/product/affiliate/<%= product[i]._id %>" id="cart-a">Go to Amazon</a></td>
+                          <% } %>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <% count ++ %>
+    <% }  %>
+<% } %>
+
+<% if(count > 0){ %>
+    <p class="center result-count"><%= count %> results found</p>
+<% } else { %>
+    <p class="center result-count">No resuts found!</p>
+<% } %>
+
+<script>
+    // js for toggle
+
+    var menuitems = document.getElementById("menuitems");
+    
+    menuitems.style.maxHeight = "300px";
+
+    function menutoggle(){
+        if(menuitems.style.maxHeight == "300px"){
+            menuitems.style.maxHeight = "0px";
+        } else {
+            menuitems.style.maxHeight = "300px";
+        }
+    }
+</script>
+
